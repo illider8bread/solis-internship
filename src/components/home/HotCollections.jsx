@@ -2,9 +2,10 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 
+
 const HotCollections = (collections) => {
   let collectionsData = collections.collections
-  console.log(collectionsData)
+
   return (
     <section id="section-collections" className="no-bottom">
       <div className="container">

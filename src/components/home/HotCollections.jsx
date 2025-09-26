@@ -1,10 +1,47 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
-
-
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import Slider from "react-slick";
 
 const HotCollections = (collections) => {
   let collectionsData = collections.collections
+  let sliderRef= useRef(null);
+  const next = () => {
+    sliderRef.slickNext();
+  };
+  const previous = () => {
+    sliderRef.slickPrev();
+  };
+  const settings = {
+    dots: false,
+    infinite: true,
+    speed: 1000,
+    arrows: false,
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    responsive: [
+      {
+        breakpoint: 1200,
+        settings: {
+          slidesToShow:2,
+        }
+      },
+      {
+        breakpoint: 992,
+        settings: {
+          slidesToShow: 2,
+        },
+      },
+      {
+        breakpoint: 767,
+        settings:{
+          slidesToShow: 1
+        }
+      }
+    ]
+  }
+
 
   return (
     <section id="section-collections" className="no-bottom">
@@ -16,9 +53,10 @@ const HotCollections = (collections) => {
               <div className="small-border bg-color-2"></div>
             </div>
           </div>
+
+          <Slider ref={slider => {sliderRef=slider}} {...settings}>
           {collectionsData.map(({id, title, authorImage, nftImage, nftId, authorId, code}) => (
-            <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={id}>
-              <div className="nft_coll">
+              <div className="nft_coll" key={id}>
                 <div className="nft_wrap">
                   <Link to="/item-details">
                     <img src={nftImage} className="lazy img-fluid" alt="" />
@@ -37,8 +75,8 @@ const HotCollections = (collections) => {
                   <span>ERC-{code}</span>
                 </div>
               </div>
-            </div>
           ))}
+          </Slider>
         </div>
       </div>
     </section>

@@ -1,25 +1,18 @@
 import React, { useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 
 const HotCollections = (collections) => {
   let collectionsData = collections.collections
   let sliderRef= useRef(null);
-  const next = () => {
-    sliderRef.slickNext();
-  };
-  const previous = () => {
-    sliderRef.slickPrev();
-  };
+
   const settings = {
     dots: false,
     infinite: true,
     speed: 1000,
-    arrows: false,
     slidesToShow: 4,
     slidesToScroll: 1,
+
     responsive: [
       {
         breakpoint: 1200,

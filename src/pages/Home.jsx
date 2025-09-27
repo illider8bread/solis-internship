@@ -9,10 +9,21 @@ import axios from "axios";
 
 const Home = () => {
   const [collectionsData, setCollectionsData] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   async function fetchCollections() {
-    const collections = await axios.get("https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections");
-    setCollectionsData(collections.data)
+    setIsLoading(true);
+    axios.get("https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections")
+      .then((response) => {
+         setCollectionsData(response.data)
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+      .finally(() =>{
+        setIsLoading(false);
+      }
+      )
   }
   useEffect(() => {
     window.scrollTo(0, 0);

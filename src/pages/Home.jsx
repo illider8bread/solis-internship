@@ -63,7 +63,7 @@ const Home = ({ itemsData, collectionsData, loadingState }) => {
       {
         breakpoint: 1200,
         settings: {
-          slidesToShow: 2,
+          slidesToShow: 3,
         }
       },
       {

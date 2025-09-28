@@ -6,11 +6,81 @@ import LandingIntro from "../components/home/LandingIntro";
 import NewItems from "../components/home/NewItems";
 import TopSellers from "../components/home/TopSellers";
 
-const Home = ({collectionsData, loadingState}) => {
-  console.log("home collections Data:");
-  console.log(collectionsData);
+const Home = ({ itemsData, collectionsData, loadingState }) => {
 
- 
+  // function to fix React Slider Arrows
+  function NextArrow({ onClick }) {
+    return (
+      <div
+        onClick={onClick}
+        className="custom-arrow next"
+        style={arrowStyle("right")}
+      >
+        <i className="fa fa-chevron-right" style={{ fontSize: 16 }} />
+      </div>
+    );
+  }
+  // function to fix React Slider Arrows
+  function PrevArrow({ onClick }) {
+    return (
+      <div
+        onClick={onClick}
+        className="custom-arrow prev"
+        style={arrowStyle("left")}
+      >
+        <i className="fa fa-chevron-left" style={{ fontSize: 16 }} />
+      </div>
+    );
+  }
+  // function to fix React Slider Arrows
+  const arrowStyle = (side) => ({
+    position: "absolute",
+    top: "50%",
+    [side]: "-25px",
+    transform: "translateY(-50%)",
+    zIndex: 2,
+    width: 40,
+    height: 40,
+    background: "#fff",
+    borderRadius: "50%",
+    boxShadow: "0 2px 6px rgba(0,0,0,0.2)",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    cursor: "pointer",
+  });
+
+  // React Slider settings
+  const settingsReactSlider = {
+    dots: false,
+    infinite: true,
+    speed: 1000,
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    nextArrow: <NextArrow />,
+    prevArrow: <PrevArrow />,
+    responsive: [
+      {
+        breakpoint: 1200,
+        settings: {
+          slidesToShow: 3,
+        }
+      },
+      {
+        breakpoint: 992,
+        settings: {
+          slidesToShow: 2,
+        },
+      },
+      {
+        breakpoint: 767,
+        settings: {
+          slidesToShow: 1
+        }
+      }
+    ]
+  }
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -21,8 +91,8 @@ const Home = ({collectionsData, loadingState}) => {
         <div id="top"></div>
         <Landing />
         <LandingIntro />
-        <HotCollections collections={collectionsData} loadingState={loadingState}/>
-        <NewItems />
+        <HotCollections settings={settingsReactSlider} collections={collectionsData} loadingState={loadingState} />
+        <NewItems settings={settingsReactSlider} items={itemsData} loadingState={loadingState} />
         <TopSellers />
         <BrowseByCategory />
       </div>

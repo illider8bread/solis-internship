@@ -15,34 +15,36 @@ const ExploreItems = ({ explore, loadingState }) => {
           <option value="likes_high_to_low">Most liked</option>
         </select>
       </div>
-      {loadingState ?
+      {!loadingState ?
         new Array(8).fill(0).map((_, index) => (
-          <div className="nft__item" key={index}>
-            <div className="author_list_pp">
-              <div className="skeleton-box"
-                style={{ width: "50px", height: "50px" }}>
+          <div
+            key={index}
+            className="d-item col-lg-3 col-md-6 col-sm-6 col-xs-12"
+            style={{ display: "block", backgroundSize: "cover" }}
+          >
+            <div className="nft__item">
+              <div className="author_list_pp">
+                <div className="skeleton-box lazy" style={{ width: "50px", height: "50px" }}>
+                    </div>
+                <i className="fa fa-check"></i>
               </div>
-              <i className="fa fa-check"></i>
-            </div>
-            <div className="de_countdown">0h 0m 0s</div>
+              <div className="de_countdown">0h 0m 0s</div>
 
-            <div className="nft__item_wrap">
-              <div
-                className="skeleton-box"
-                style={{ width: "100%", height: "200px" }}
-              />
-            </div>
-            <div className="nft__item_info">
-              <div className="skeleton-box"
-                style={{ width: "100px", height: "20px" }}>
+              <div className="nft__item_wrap">
+                <div className="skeleton-box" style={{ width: "100%", height: "200px" }} />
               </div>
-              <br />
-              <div className="skeleton-box"
-                style={{ width: "60px", height: "20px" }}>
-              </div>
-              <div className="nft__item_like">
-                <i className="fa fa-heart"></i>
-                <span>0</span>
+              <div className="nft__item_info">
+                <div className="skeleton-box"
+                  style={{ width: "100px", height: "20px" }}>
+                </div>
+                <br />
+                <div className="skeleton-box"
+                  style={{ width: "60px", height: "20px" }}>
+                </div>
+                <div className="nft__item_like">
+                  <i className="fa fa-heart"></i>
+                  <span>0</span>
+                </div>
               </div>
             </div>
           </div>

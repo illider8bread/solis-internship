@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import EthImage from "../images/ethereum.svg";
+import AOS from 'aos'
 import AuthorImage from "../images/author_thumbnail.jpg";
 import nftImage from "../images/nftImage.jpg";
 
@@ -109,7 +110,8 @@ const ItemDetails = () => {
               </div>)
               :
               (<div className="row">
-                <div className="col-md-6 text-center">
+                <div className="col-md-6 text-center" data-aos="fade"
+            data-aos-duration="3000">
                   <img
                     src={itemData.nftImage}
                     className="img-fluid img-rounded mb-sm-30 nft-image"
@@ -117,7 +119,8 @@ const ItemDetails = () => {
                   />
                 </div>
                 <div className="col-md-6">
-                  <div className="item_info">
+                  <div className="item_info" data-aos="fade-left"
+            data-aos-duration="2000">
                     <h2>{itemData.title} #{itemData.tag}</h2>
 
                     <div className="item_info_counts">

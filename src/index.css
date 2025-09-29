@@ -12,6 +12,7 @@
 @import "./css/styles/coloring.css";
 @import "slick-carousel/slick/slick.css";
 @import "slick-carousel/slick/slick-theme.css";
+@import 'aos/dist/aos.css';
 
 .slick-slide>div {
 padding: 0 15px;

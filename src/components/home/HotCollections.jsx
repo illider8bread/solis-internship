@@ -45,7 +45,7 @@ const HotCollections = ({ collections, loadingState, settings }) => {
                 </div>
               ))) : (
               collectionsData.map(({ id, title, authorImage, nftImage, nftId, authorId, code }) => (
-                <div className="nft_coll" key={id}>
+                <div className="nft_coll" key={id} data-aos="fade-up">
                   <div className="nft_wrap">
                     <Link to={`/item-details/${nftId}`}>
                       <img src={nftImage} className="lazy img-fluid" alt="" />

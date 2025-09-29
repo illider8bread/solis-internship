@@ -23,7 +23,7 @@ const Author = ({ loadingState, author }) => {
 
  async function fetchAuthor(){
   setIsLoading(true);
-  axios.get(`https://us-central1-nft-cloud-functions.cloudfunctions.net/authors?author=${params.id}`)
+  axios.get(`https://us-central1-nft-cloud-functions.cloudfunctions.net/authors?author=${params.authorId}`)
   .then(function (response) {
     setAuthorData(response.data)
     setAuthorCollection(response.data.nftCollection)

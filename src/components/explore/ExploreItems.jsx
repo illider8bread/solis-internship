@@ -15,7 +15,7 @@ const ExploreItems = ({ explore, loadingState }) => {
           <option value="likes_high_to_low">Most liked</option>
         </select>
       </div>
-      {!loadingState ?
+      {loadingState ?
         new Array(8).fill(0).map((_, index) => (
           <div
             key={index}

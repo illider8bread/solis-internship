@@ -6,8 +6,7 @@ import LandingIntro from "../components/home/LandingIntro";
 import NewItems from "../components/home/NewItems";
 import TopSellers from "../components/home/TopSellers";
 
-const Home = ({ itemsData, collectionsData, loadingState }) => {
-
+const Home = ({ itemsData, collectionsData, loadingState, sellersData }) => {
   // function to fix React Slider Arrows
   function NextArrow({ onClick }) {
     return (
@@ -93,7 +92,7 @@ const Home = ({ itemsData, collectionsData, loadingState }) => {
         <LandingIntro />
         <HotCollections settings={settingsReactSlider} collections={collectionsData} loadingState={loadingState} />
         <NewItems settings={settingsReactSlider} items={itemsData} loadingState={loadingState} />
-        <TopSellers />
+        <TopSellers sellers={sellersData} loadingState={loadingState}/>
         <BrowseByCategory />
       </div>
     </div>

@@ -10,7 +10,7 @@ const ItemsMap = ({ items }) => {
                 <div className="nft__item" key={id}>
                     <div className="author_list_pp">
                         <Link
-                            to="/author"
+                            to={`/author/${authorId}`}
                             data-bs-toggle="tooltip"
                             data-bs-placement="top"
                             title="Creator: Monica Lucas"

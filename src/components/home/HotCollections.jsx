@@ -29,17 +29,17 @@ const HotCollections = ({ collections, loadingState, settings }) => {
                   </div>
                   <div className="nft_coll_pp">
                     <div className="skeleton-box"
-                      style={{ width: "50px", height: "50px" }}>
+                      style={{ width: "50px", height: "50px" , borderRadius: "50%"}}>
                     </div>
                     <i className="fa fa-check"></i>
                   </div>
                   <div className="nft_coll_info">
                     <div className="skeleton-box"
-                      style={{ width: "100px", height: "20px" }}>
+                      style={{ width: "100px", height: "20px", borderRadius: "5px" }}>
                     </div>
                     <br />
                     <div className="skeleton-box"
-                      style={{ width: "60px", height: "20px" }}>
+                      style={{ width: "60px", height: "20px", borderRadius: "5px" }}>
                     </div>
                   </div>
                 </div>
@@ -52,7 +52,7 @@ const HotCollections = ({ collections, loadingState, settings }) => {
                     </Link>
                   </div>
                   <div className="nft_coll_pp">
-                    <Link to="/author">
+                    <Link to={`/author/${authorId}`}>
                       <img className="lazy pp-coll" src={authorImage} alt="" />
                     </Link>
                     <i className="fa fa-check"></i>

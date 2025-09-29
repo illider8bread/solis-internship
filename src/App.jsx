@@ -15,6 +15,7 @@ function App() {
     const [sellersData, setSellersData] = useState([]);
     const [exploreData, setExploreData] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
+    const [authorData, setAuthorData] = useState([])
     const [filterValue, setFilterValue] = useState('none')
     
     function filterChangeHandler(event){
@@ -28,14 +29,16 @@ function App() {
       const fetchNewItems = axios.get("https://us-central1-nft-cloud-functions.cloudfunctions.net/newItems");
       const fetchTopSellers = axios.get("https://us-central1-nft-cloud-functions.cloudfunctions.net/topSellers");
       const exploreUrl = filterValue === 'none' ? ('https://us-central1-nft-cloud-functions.cloudfunctions.net/explore') : (`https://us-central1-nft-cloud-functions.cloudfunctions.net/explore?filter=${filterValue}`)
+      const fetchAuthorData = axios.get(`https://us-central1-nft-cloud-functions.cloudfunctions.net/authors?author=73855012`);
       const fetchExplore = axios.get(exploreUrl);
 
-      axios.all([fetchHotCollections, fetchNewItems, fetchTopSellers, fetchExplore])
-        .then(axios.spread((fetchedHotCollections, fetchedNewItems, fetchedTopSellers, fetchedExplore) => {
+      axios.all([fetchHotCollections, fetchNewItems, fetchTopSellers, fetchExplore, fetchAuthorData])
+        .then(axios.spread((fetchedHotCollections, fetchedNewItems, fetchedTopSellers, fetchedExplore, fetchedAuthor) => {
            setCollectionsData(fetchedHotCollections.data);
            setItemsData(fetchedNewItems.data);
            setSellersData(fetchedTopSellers.data);
            setExploreData(fetchedExplore.data);
+           setAuthorData(fetchedAuthor.data)
         }))
         .catch((error) => {
           console.log(error);
@@ -49,13 +52,14 @@ function App() {
     useEffect(() => {
     fetchCollections();
   }, [filterValue]);
+
   return (
     <Router>
       <Nav />
       <Routes>
         <Route path="/" element={<Home sellersData={sellersData} itemsData={itemsData} collectionsData={collectionsData} loadingState={isLoading}/>} />
         <Route path="/explore" element={<Explore loadingState={isLoading} exploreData={exploreData} filterHandler={filterChangeHandler}/>} />
-        <Route path="/author" element={<Author />} />
+        <Route path="/author" element={<Author loadingState={isLoading} author={authorData} />} />
         <Route path="/item-details" element={<ItemDetails />} />
       </Routes>
       <Footer />

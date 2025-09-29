@@ -4,7 +4,6 @@ import AuthorImage from "../../images/author_thumbnail.jpg";
 
 const TopSellers = ({ sellers, loadingState }) => {
   const sellersData = sellers;
-  console.log(sellersData);
   return (
     <section id="section-popular" className="pb-5">
       <div className="container">

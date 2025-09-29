@@ -6,10 +6,20 @@ import { Link, useParams } from "react-router-dom";
 
 const Author = ({ loadingState, author }) => {
   const params = useParams();
-  console.log(params);
   const [authorData, setAuthorData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [authorCollection, setAuthorCollection] = useState([])
+  const [following, setFollowing] = useState(false);
+  const [followers, setFollowers] = useState(parseInt(authorData.followers))
+  
+  const followingHandler= ()=>{
+    setFollowing(!following);
+    if(following===true){
+      setFollowers(followers + 1)
+    }else{
+      setFollowers(parseInt(authorData.followers))
+    }
+  };
 
  async function fetchAuthor(){
   setIsLoading(true);
@@ -70,8 +80,8 @@ const Author = ({ loadingState, author }) => {
                   <div className="profile_follow de-flex">
                     <div className="de-flex-col">
                       <div className="profile_follower">{authorData.followers} followers</div>
-                      <Link to="#" className="btn-main">
-                        Follow
+                      <Link to="#" className="btn-main" onClick={followingHandler}>
+                        {following? "Unfollow" : "Follow"}
                       </Link>
                     </div>
                   </div>

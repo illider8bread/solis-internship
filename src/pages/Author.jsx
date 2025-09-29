@@ -1,12 +1,35 @@
-import React from "react";
+import { useEffect, useState } from "react";
+import axios from "axios";
 import AuthorBanner from "../images/author_banner.jpg";
 import AuthorItems from "../components/author/AuthorItems";
-import { Link } from "react-router-dom";
-import AuthorImage from "../images/author_thumbnail.jpg";
+import { Link, useParams } from "react-router-dom";
 
 const Author = ({ loadingState, author }) => {
-  const collection = author.nftCollection;
-  const header = collection['0']['nftImage'];
+  const params = useParams();
+  console.log(params);
+  const [authorData, setAuthorData] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [authorCollection, setAuthorCollection] = useState([])
+
+ async function fetchAuthor(){
+  setIsLoading(true);
+  axios.get(`https://us-central1-nft-cloud-functions.cloudfunctions.net/authors?author=${params.id}`)
+  .then(function (response) {
+    setAuthorData(response.data)
+    setAuthorCollection(response.data.nftCollection)
+  })
+  .catch(function (error) {
+    console.log(error);
+  })
+  .finally(function () {
+    setIsLoading(false);
+  });
+ }
+ 
+ useEffect(()=>{
+  fetchAuthor();
+ },[])
+
   return (
     <div id="wrapper">
       <div className="no-bottom no-top" id="content">
@@ -17,7 +40,7 @@ const Author = ({ loadingState, author }) => {
           aria-label="section"
           className="text-light"
           data-bgimage="url(images/author_banner.jpg) top"
-          style={{ background: `url(${header})  center-top cover content-box` }}
+          style={{ background: `url(${AuthorBanner}) top` }}
         ></section>
 
         <section aria-label="section">
@@ -27,15 +50,15 @@ const Author = ({ loadingState, author }) => {
                 <div className="d_profile de-flex">
                   <div className="de-flex-col">
                     <div className="profile_avatar">
-                      <img src={author.authorImage} alt="" />
+                      <img src={authorData.authorImage} alt="" />
 
                       <i className="fa fa-check"></i>
                       <div className="profile_name">
                         <h4>
-                          {author.authorName}
-                          <span className="profile_username">{author.tag}</span>
+                          {authorData.authorName}
+                          <span className="profile_username">@{authorData.tag}</span>
                           <span id="wallet" className="profile_wallet">
-                            {author.address}
+                            {authorData.address}
                           </span>
                           <button id="btn_copy" title="Copy Text">
                             Copy
@@ -46,7 +69,7 @@ const Author = ({ loadingState, author }) => {
                   </div>
                   <div className="profile_follow de-flex">
                     <div className="de-flex-col">
-                      <div className="profile_follower">{author.followers} followers</div>
+                      <div className="profile_follower">{authorData.followers} followers</div>
                       <Link to="#" className="btn-main">
                         Follow
                       </Link>
@@ -57,7 +80,7 @@ const Author = ({ loadingState, author }) => {
 
               <div className="col-md-12">
                 <div className="de_tab tab_simple">
-                  <AuthorItems />
+                  <AuthorItems collection={authorCollection} authorImage={authorData.authorImage} loadingState={isLoading} />
                 </div>
               </div>
             </div>

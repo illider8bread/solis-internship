@@ -11,7 +11,7 @@ const ItemDetails = () => {
 
   return (
     <div id="wrapper">
-      <div className="no-bottom no-top" id="content">
+      {/* <div className="no-bottom no-top" id="content">
         <div id="top"></div>
         <section aria-label="section" className="mt90 sm-mt-0">
           <div className="container">
@@ -47,13 +47,13 @@ const ItemDetails = () => {
                       <h6>Owner</h6>
                       <div className="item_author">
                         <div className="author_list_pp">
-                          <Link to="/author">
+                          <Link to={`/author/${authorId}`}>
                             <img className="lazy" src={AuthorImage} alt="" />
                             <i className="fa fa-check"></i>
                           </Link>
                         </div>
                         <div className="author_list_info">
-                          <Link to="/author">Monica Lucas</Link>
+                          <Link to={`/author/${authorId}`}>Monica Lucas</Link>
                         </div>
                       </div>
                     </div>
@@ -64,13 +64,13 @@ const ItemDetails = () => {
                       <h6>Creator</h6>
                       <div className="item_author">
                         <div className="author_list_pp">
-                          <Link to="/author">
+                          <Link to={`/author/${authorId}`}>
                             <img className="lazy" src={AuthorImage} alt="" />
                             <i className="fa fa-check"></i>
                           </Link>
                         </div>
                         <div className="author_list_info">
-                          <Link to="/author">Monica Lucas</Link>
+                          <Link to={`/author/${authorId}`}>Monica Lucas</Link>
                         </div>
                       </div>
                     </div>
@@ -86,7 +86,7 @@ const ItemDetails = () => {
             </div>
           </div>
         </section>
-      </div>
+      </div> */}
     </div>
   );
 };

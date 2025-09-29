@@ -12,20 +12,23 @@ import axios from "axios";
 function App() {
     const [collectionsData, setCollectionsData] = useState([]);
     const [itemsData, setItemsData] = useState([]);
-    const [sellersData, setSellersData] = useState([])
+    const [sellersData, setSellersData] = useState([]);
+    const [exploreData, setExploreData] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
 
    async function fetchCollections() {
       setIsLoading(true);
       const fetchHotCollections = axios.get("https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections");
       const fetchNewItems = axios.get("https://us-central1-nft-cloud-functions.cloudfunctions.net/newItems");
-      const fetchTopSellers = axios.get("https://us-central1-nft-cloud-functions.cloudfunctions.net/topSellers")
+      const fetchTopSellers = axios.get("https://us-central1-nft-cloud-functions.cloudfunctions.net/topSellers");
+      const fetchExplore = axios.get('https://us-central1-nft-cloud-functions.cloudfunctions.net/explore');
 
-      axios.all([fetchHotCollections, fetchNewItems, fetchTopSellers])
-        .then(axios.spread((fetchedHotCollections, fetchedNewItems, fetchedTopSellers) => {
-           setCollectionsData(fetchedHotCollections.data)
-           setItemsData(fetchedNewItems.data)
-           setSellersData(fetchedTopSellers.data)
+      axios.all([fetchHotCollections, fetchNewItems, fetchTopSellers, fetchExplore])
+        .then(axios.spread((fetchedHotCollections, fetchedNewItems, fetchedTopSellers, fetchedExplore) => {
+           setCollectionsData(fetchedHotCollections.data);
+           setItemsData(fetchedNewItems.data);
+           setSellersData(fetchedTopSellers.data);
+           setExploreData(fetchedExplore.data);
         }))
         .catch((error) => {
           console.log(error);
@@ -37,14 +40,14 @@ function App() {
     }
 
     useEffect(() => {
-    fetchCollections()
+    fetchCollections();
   }, []);
   return (
     <Router>
       <Nav />
       <Routes>
         <Route path="/" element={<Home sellersData={sellersData} itemsData={itemsData} collectionsData={collectionsData} loadingState={isLoading}/>} />
-        <Route path="/explore" element={<Explore />} />
+        <Route path="/explore" element={<Explore loadingState={isLoading} exploreData={exploreData} />} />
         <Route path="/author" element={<Author />} />
         <Route path="/item-details" element={<ItemDetails />} />
       </Routes>

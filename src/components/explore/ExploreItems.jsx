@@ -2,8 +2,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 import AuthorImage from "../../images/author_thumbnail.jpg";
 import nftImage from "../../images/nftImage.jpg";
+import Countdown from "../home/Countdown";
 
-const ExploreItems = () => {
+const ExploreItems = ({explore, loadingState}) => {
   return (
     <>
       <div>
@@ -14,24 +15,50 @@ const ExploreItems = () => {
           <option value="likes_high_to_low">Most liked</option>
         </select>
       </div>
-      {new Array(8).fill(0).map((_, index) => (
+      {loadingState ? 
+            new Array(8).fill(0).map((_, index) => (
+                        <div className="px-1" key={index}>
+                  <div className="nft_wrap">
+                    <div className="skeleton-box"
+                      style={{ width: "100%", height: "200px" }}>
+                    </div>
+                  </div>
+                  <div className="nft_coll_pp">
+                    <div className="skeleton-box"
+                      style={{ width: "50px", height: "50px" }}>
+                    </div>
+                    <i className="fa fa-check"></i>
+                  </div>
+                  <div className="nft_coll_info">
+                    <div className="skeleton-box"
+                      style={{ width: "100px", height: "20px" }}>
+                    </div>
+                    <br />
+                    <div className="skeleton-box"
+                      style={{ width: "60px", height: "20px" }}>
+                    </div>
+                  </div>
+                </div>
+      ))
+      :
+      explore.map(({id, authorId, authorImage, nftImage, nftId, title, price, likes, expiryDate}) => (
         <div
-          key={index}
+          key={id}
           className="d-item col-lg-3 col-md-6 col-sm-6 col-xs-12"
           style={{ display: "block", backgroundSize: "cover" }}
         >
           <div className="nft__item">
             <div className="author_list_pp">
               <Link
-                to="/author"
+                to={`/author/${authorId}`}
                 data-bs-toggle="tooltip"
                 data-bs-placement="top"
               >
-                <img className="lazy" src={AuthorImage} alt="" />
+                <img className="lazy" src={authorImage} alt={`Profile pic for user: ${authorId}`} />
                 <i className="fa fa-check"></i>
               </Link>
             </div>
-            <div className="de_countdown">5h 30m 32s</div>
+            <Countdown expiryDate={expiryDate} />
 
             <div className="nft__item_wrap">
               <div className="nft__item_extra">
@@ -52,22 +79,25 @@ const ExploreItems = () => {
                 </div>
               </div>
               <Link to="/item-details">
-                <img src={nftImage} className="lazy nft__item_preview" alt="" />
+                <img src={nftImage} className="lazy nft__item_preview" alt={`NFT image titled: ${title}`} />
               </Link>
             </div>
             <div className="nft__item_info">
-              <Link to="/item-details">
-                <h4>Pinky Ocean</h4>
+              <Link to={`/item-details/${nftId}`}>
+                <h4>{title}</h4>
               </Link>
-              <div className="nft__item_price">1.74 ETH</div>
+              <div className="nft__item_price">{price} ETH</div>
               <div className="nft__item_like">
                 <i className="fa fa-heart"></i>
-                <span>69</span>
+                <span>{likes}</span>
               </div>
             </div>
           </div>
         </div>
-      ))}
+      ))
+    }
+      
+
       <div className="col-md-12 text-center">
         <Link to="" id="loadmore" className="btn-main lead">
           Load more

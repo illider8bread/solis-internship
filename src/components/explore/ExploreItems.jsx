@@ -6,16 +6,16 @@ import Countdown from "../home/Countdown";
 
 const ExploreItems = ({ explore, loadingState }) => {
   const [loadCards, setLoadCards] = useState(8);
-  const loadMore = ()=>{
-    if (loadCards >= 20){
+  const loadMore = () => {
+    if (loadCards >= 16) {
       return
-    }else {
+    } else {
       setLoadCards(loadCards + 4)
     }
   };
-  useEffect(()=>{
+  useEffect(() => {
     console.log(loadCards);
-  },[loadCards])
+  }, [loadCards])
   return (
     <>
       <div>
@@ -36,7 +36,7 @@ const ExploreItems = ({ explore, loadingState }) => {
             <div className="nft__item">
               <div className="author_list_pp">
                 <div className="skeleton-box lazy" style={{ width: "50px", height: "50px" }}>
-                    </div>
+                </div>
                 <i className="fa fa-check"></i>
               </div>
               <div className="de_countdown">0h 0m 0s</div>
@@ -117,12 +117,16 @@ const ExploreItems = ({ explore, loadingState }) => {
         ))
       }
 
-
-      <div className="col-md-12 text-center">
+      {(loadCards <= 15) ? 
+      (<div className="col-md-12 text-center">
         <Link to="" id="loadmore" className="btn-main lead" onClick={loadMore}>
           Load more
         </Link>
-      </div>
+      </div>)
+        :
+        null
+      }
+
     </>
   );
 };

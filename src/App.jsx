@@ -60,8 +60,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Home sellersData={sellersData} itemsData={itemsData} collectionsData={collectionsData} loadingState={isLoading}/>} />
         <Route path="/explore" element={<Explore loadingState={isLoading} exploreData={exploreData} filterHandler={filterChangeHandler}/>} />
-        <Route path="/author/:id" element={<Author loadingState={isLoading}  />} />
-        <Route path="/item-details" element={<ItemDetails />} />
+        <Route path="/author/:authorId" element={<Author loadingState={isLoading}  />} />
+        <Route path="/item-details/:itemId" element={<ItemDetails />} />
       </Routes>
       <Footer />
     </Router>

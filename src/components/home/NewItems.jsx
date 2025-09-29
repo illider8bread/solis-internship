@@ -26,7 +26,7 @@ const NewItems = ({ items, loadingState, settings }) => {
           >
             <div className="nft__item">
               <div className="author_list_pp">
-                <div className="skeleton-box lazy" style={{ width: "50px", height: "50px" }}>
+                <div className="skeleton-box lazy" style={{ width: "50px", height: "50px" , borderRadius: "50%"}}>
                     </div>
                 <i className="fa fa-check"></i>
               </div>
@@ -37,11 +37,11 @@ const NewItems = ({ items, loadingState, settings }) => {
               </div>
               <div className="nft__item_info">
                 <div className="skeleton-box"
-                  style={{ width: "100px", height: "20px" }}>
+                  style={{ width: "100px", height: "20px", borderRadius: "5px" }}>
                 </div>
                 <br />
                 <div className="skeleton-box"
-                  style={{ width: "60px", height: "20px" }}>
+                  style={{ width: "60px", height: "20px", borderRadius: "5px", marginRight: "65%" }}>
                 </div>
                 <div className="nft__item_like">
                   <i className="fa fa-heart"></i>

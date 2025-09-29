@@ -80,7 +80,7 @@ const Author = ({ loadingState, author }) => {
 
               <div className="col-md-12">
                 <div className="de_tab tab_simple">
-                  <AuthorItems collection={authorCollection} authorImage={authorData.authorImage} loadingState={isLoading} />
+                  <AuthorItems collection={authorCollection} authorImage={authorData.authorImage} authorId={authorData.authorId} loadingState={isLoading} />
                 </div>
               </div>
             </div>

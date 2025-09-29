@@ -20,17 +20,17 @@ const TopSellers = ({ sellers, loadingState }) => {
                   <li key={index}>
                     <div className="author_list_pp">
                       <div className="skeleton-box"
-                        style={{ width: "50px", height: "50px" }}>
+                        style={{ width: "50px", height: "50px" , borderRadius: "50%"}}>
                       </div>
                       <i className="fa fa-check"></i>
                     </div>
                     <div className="author_list_info">
                       <div className="skeleton-box"
-                        style={{ width: "100px", height: "20px" }}>
+                        style={{ width: "100px", height: "20px", borderRadius: "5px" }}>
                       </div>
                       <br />
                       <div className="skeleton-box"
-                        style={{ width: "60px", height: "20px" }}>
+                        style={{ width: "60px", height: "20px", borderRadius: "5px" }}>
                       </div>
                     </div>
                   </li>

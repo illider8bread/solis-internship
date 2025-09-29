@@ -17,9 +17,9 @@ const Countdown = ({ expiryDate }) => {
   const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
 
   return (
-    <div className="de_countdown">
-      {timeLeft > 0 ? `${hours}h ${minutes}m ${seconds}s` : "Expired"}
-    </div>
+    <>
+      {timeLeft > 0 ? <div className="de_countdown">{`${hours}h ${minutes}m ${seconds}s`}</div> : null}
+    </>
   );
 };
 

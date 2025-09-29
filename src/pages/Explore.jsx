@@ -32,7 +32,7 @@ const Explore = ({loadingState, exploreData, filterHandler}) => {
         <section aria-label="section">
           <div className="container">
             <div className="row">
-              <ExploreItems explore={exploreData} loadingState={loadingState} filterChangeHandler={filterHandler}/>
+              <ExploreItems explore={exploreData} loadingState={loadingState} filterChangeHandler={filterHandler}  />
             </div>
           </div>
         </section>

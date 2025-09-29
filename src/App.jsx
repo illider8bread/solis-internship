@@ -7,9 +7,11 @@ import Nav from "./components/Nav";
 import Footer from "./components/Footer";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import Aos from "aos";
 
 
 function App() {
+  Aos.init();
     const [collectionsData, setCollectionsData] = useState([]);
     const [itemsData, setItemsData] = useState([]);
     const [sellersData, setSellersData] = useState([]);

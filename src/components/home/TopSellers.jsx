@@ -17,7 +17,7 @@ const TopSellers = ({ sellers, loadingState }) => {
             <ol className="author_list">
               {loadingState ?
                 new Array(12).fill(0).map((_, index) => (
-                  <li key={index}>
+                  <li key={index} data-aos="fade-up">
                     <div className="author_list_pp">
                       <div className="skeleton-box"
                         style={{ width: "50px", height: "50px" , borderRadius: "50%"}}>
@@ -37,7 +37,7 @@ const TopSellers = ({ sellers, loadingState }) => {
                 ))
                 :
                 sellersData.map(({ id, authorImage, authorName, authorId, price }) => (
-                  <li key={id}>
+                  <li key={id} data-aos="fade">
                     <div className="author_list_pp">
                       <Link to={`/author/${authorId}`}>
                         <img

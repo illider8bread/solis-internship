@@ -62,7 +62,8 @@ const ExploreItems = ({ explore, loadingState, filterChangeHandler }) => {
             className="d-item col-lg-3 col-md-6 col-sm-6 col-xs-12"
             style={{ display: "block", backgroundSize: "cover" }}
           >
-            <div className="nft__item">
+            <div className="nft__item" data-aos="fade"
+            data-aos-duration="3000">
               <div className="author_list_pp">
                 <Link
                   to={`/author/${authorId}`}
@@ -114,7 +115,7 @@ const ExploreItems = ({ explore, loadingState, filterChangeHandler }) => {
 
       {(loadCards < explore.length) ? 
       (<div className="col-md-12 text-center">
-        <Link to="" id="loadmore" className="btn-main lead" onClick={loadMore}>
+        <Link to="" id="loadmore" className="btn-main lead" onClick={loadMore} data-aos="fade-up" data-aos-duration="3000">
           Load more
         </Link>
       </div>)

@@ -4,7 +4,7 @@ import AuthorImage from "../../images/author_thumbnail.jpg";
 import nftImage from "../../images/nftImage.jpg";
 import Countdown from "../home/Countdown";
 
-const ExploreItems = ({ explore, loadingState }) => {
+const ExploreItems = ({ explore, loadingState, filterChangeHandler }) => {
   const [loadCards, setLoadCards] = useState(8);
   const loadMore = () => {
     if (loadCards >= 16) {
@@ -19,7 +19,7 @@ const ExploreItems = ({ explore, loadingState }) => {
   return (
     <>
       <div>
-        <select id="filter-items" defaultValue="">
+        <select id="filter-items" defaultValue="" onChange={filterChangeHandler}>
           <option value="">Default</option>
           <option value="price_low_to_high">Price, Low to High</option>
           <option value="price_high_to_low">Price, High to Low</option>

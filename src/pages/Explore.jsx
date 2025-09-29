@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import SubHeader from "../images/subheader.jpg";
 import ExploreItems from "../components/explore/ExploreItems";
 
-const Explore = ({loadingState, exploreData}) => {
+const Explore = ({loadingState, exploreData, filterHandler}) => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -32,7 +32,7 @@ const Explore = ({loadingState, exploreData}) => {
         <section aria-label="section">
           <div className="container">
             <div className="row">
-              <ExploreItems explore={exploreData} loadingState={loadingState}/>
+              <ExploreItems explore={exploreData} loadingState={loadingState} filterChangeHandler={filterHandler}/>
             </div>
           </div>
         </section>

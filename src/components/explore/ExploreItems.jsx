@@ -7,15 +7,12 @@ import Countdown from "../home/Countdown";
 const ExploreItems = ({ explore, loadingState, filterChangeHandler }) => {
   const [loadCards, setLoadCards] = useState(8);
   const loadMore = () => {
-    if (loadCards >= 16) {
+    if (loadCards >= explore.length) {
       return
     } else {
       setLoadCards(loadCards + 4)
     }
   };
-  useEffect(() => {
-    console.log(loadCards);
-  }, [loadCards])
   return (
     <>
       <div>
@@ -117,7 +114,7 @@ const ExploreItems = ({ explore, loadingState, filterChangeHandler }) => {
         ))
       }
 
-      {(loadCards <= 15) ? 
+      {(loadCards < explore.length) ? 
       (<div className="col-md-12 text-center">
         <Link to="" id="loadmore" className="btn-main lead" onClick={loadMore}>
           Load more

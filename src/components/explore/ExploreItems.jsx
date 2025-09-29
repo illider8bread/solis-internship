@@ -1,10 +1,21 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import AuthorImage from "../../images/author_thumbnail.jpg";
 import nftImage from "../../images/nftImage.jpg";
 import Countdown from "../home/Countdown";
 
 const ExploreItems = ({ explore, loadingState }) => {
+  const [loadCards, setLoadCards] = useState(8);
+  const loadMore = ()=>{
+    if (loadCards >= 20){
+      return
+    }else {
+      setLoadCards(loadCards + 4)
+    }
+  };
+  useEffect(()=>{
+    console.log(loadCards);
+  },[loadCards])
   return (
     <>
       <div>
@@ -50,7 +61,7 @@ const ExploreItems = ({ explore, loadingState }) => {
           </div>
         ))
         :
-        explore.map(({ id, authorId, authorImage, nftImage, nftId, title, price, likes, expiryDate }) => (
+        explore.slice(0, loadCards).map(({ id, authorId, authorImage, nftImage, nftId, title, price, likes, expiryDate }) => (
           <div
             key={id}
             className="d-item col-lg-3 col-md-6 col-sm-6 col-xs-12"
@@ -108,7 +119,7 @@ const ExploreItems = ({ explore, loadingState }) => {
 
 
       <div className="col-md-12 text-center">
-        <Link to="" id="loadmore" className="btn-main lead">
+        <Link to="" id="loadmore" className="btn-main lead" onClick={loadMore}>
           Load more
         </Link>
       </div>
